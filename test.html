@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel ="stylesheet" href="style.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  ...
+/>
+</head>
+<body>
+   <header>
+  <div class="logoe">
+    <h1>Falcon</h1>
+  </div>
+  <button class="menu-toggle" id="menu-open">☰</button>
+  <button class="menu-toggle" id="menu-close" style="display: none;">✖</button>
+  <div class="nav-menu" id="nav-menu">
+    <div class="nav-item"><a href="home.html">Home</a></div>
+    <div class="nav-item dropdown">
+      <a href="javascript:void(0)" onclick="toggleDropdown(this)">
+        Products <span class="dropdown-icon">▼</span>
+      </a>
+      <div class="dropdown-menu">
+        <a href="#">Electronics</a>
+        <a href="#">Clothing</a>
+        <a href="#">Furniture</a>
+      </div>
+    </div>
+
+    <div class="nav-item dropdown">
+      <a href="javascript:void(0)" onclick="toggleDropdown(this)">
+        About <span class="dropdown-icon">▼</span>
+      </a>
+      <div class="dropdown-menu">
+        <a href="#">Team</a>
+        <a href="#">Company</a>
+      </div>
+    </div>
+    <div class="nav-item"><a href="card.html">Contact</a></div>
+    <div class="nav-item"><a href="account.html">Account</a></div>
+  </div>
+     <a href="#" id="openCart">
+      <img src="imges\cart.png" width="30px" height="30px" alt="Cart" />
+    </a>
+    <span class="cart-counter">0</span>
+</header>
+<section>
+  <div class="produced">
+      <button class="filter-toggle">
+    <span class="icon">+</span> Filter
+  </button>
+
+  <!-- Cart Drawer -->
+ 
+  <!-- Cart Drawer -->
+</div>
+  <div class="producte">
+    <!-- <h2>Feature Products</h2> -->
+     <div class="filter-sidebar">
+    <!-- Availability -->
+    <div class="filter-group">
+      <h3>Availability</h3>
+      <button type="button">Reset</button>
+      <div class="filter-option"><input type="checkbox" id="inStock"> <label for="inStock">In stock (390)</label></div>
+      <div class="filter-option"><input type="checkbox" id="outStock"> <label for="outStock">Out of stock (89)</label></div>
+    </div>
+
+    <!-- Price -->
+    <div class="filter-group">
+      <h3>Price</h3>
+      <button type="button">Reset</button>
+      <div class="slider-container">
+        <div class="price-values">
+          <span>₹0</span>
+          <span>₹2640</span>
+        </div>
+        <input type="range" min="0" max="2640" value="1320">
+      </div>
+    </div>
+
+    <!-- Product Type -->
+    <div class="filter-group">
+      <h3>Product Type</h3>
+      <button type="button">Reset</button>
+      <input type="text" class="filter-search" placeholder="Search Product Types">
+      <div class="filter-option"><input type="checkbox" id="aviator"> <label for="aviator">Aviator (70)</label></div>
+      <div class="filter-option"><input type="checkbox" id="catEye"> <label for="catEye">Cat Eye (1)</label></div>
+      <div class="filter-option"><input type="checkbox" id="go"> <label for="go">go (1)</label></div>
+      <div class="filter-option"><input type="checkbox" id="hexago"> <label for="hexago">Hexago (1)</label></div>
+      <div class="filter-option"><input type="checkbox" id="hexagon"> <label for="hexagon">Hexagon (65)</label></div>
+      <div class="filter-option"><input type="checkbox" id="rectangle"> <label for="rectangle">Rectangle (30)</label></div>
+      <div class="filter-option"><input type="checkbox" id="round"> <label for="round">Round (80)</label></div>
+      <div class="filter-option"><input type="checkbox" id="square"> <label for="square">Square (231)</label></div>
+    </div>
+
+    <!-- Color -->
+    <div class="filter-group">
+      <h3>Color</h3>
+      <button type="button">Reset</button>
+      <div class="color-options">
+        <div class="color-circle color-black" title="Black"></div>
+        <div class="color-circle color-brown" title="Brown"></div>
+        <div class="color-circle color-blue" title="Blue"></div>
+        <div class="color-circle color-red" title="Red"></div>
+        <div class="color-circle color-green" title="Green"></div>
+        <div class="color-circle color-yellow" title="Yellow"></div>
+      </div>
+    </div>
+
+    <!-- Frame Material -->
+    <div class="filter-group">
+      <h3>Frame Material</h3>
+      <button type="button">Reset</button>
+      <div class="filter-option"><input type="checkbox" id="halfRim"> <label for="halfRim">Half-Rim (38)</label></div>
+      <div class="filter-option"><input type="checkbox" id="metal"> <label for="metal">Metal (263)</label></div>
+      <div class="filter-option"><input type="checkbox" id="plastic"> <label for="plastic">Plastic</label></div>
+    </div>
+  </div>
+    <div id="productContainer"></div>
+  </div>
+</div>
+
+  <!-- <div id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <span id="closeCart" class="close-btn">&times;</span>
+      <span class="remove">Remove</span>
+    </div>
+      <div class="cart-footer">
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div> -->
+  <div id="cartDrawer" class="cart-drawer">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <span id="closeCart" class="close-btn">&times;</span>
+     <!-- <div class="cart-summary"></div> -->
+  </div>
+
+  <!-- Cart Items Injected Here -->
+  <div class="cart-summary">
+
+  <div class="cart-footer">
+  </div>
+  </div>
+</div>
+
+</section>
+   <script>
+    function showTick(el) {
+      el.classList.add('show-tick');
+      setTimeout(() => {
+        el.classList.remove('show-tick');
+      }, 1500);
+    }
+
+
+
+        const products= [
+      {
+        id: 1,
+        name: "Classic Glasses",
+        price: 49.99,
+        image: "imges/glasses.jpg"
+      },
+      {
+        id: 2,
+        name: "Aviator Sunglasses",
+        price: 59.99,
+        image: "imges/glasses.jpg"
+        
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+
+      }
+      ,
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+        
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+       
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+        
+      }
+      ,
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+     
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+       
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+        
+      }
+      ,
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+        
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+      
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+        
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+       
+      },
+      {
+        id: 3,
+        name: "Round Frames",
+        price: 39.99,
+        image: "imges/glasses.jpg"
+       
+      }
+    ]
+</script>
+  <script>
+
+  let cartItems = [];
+
+  function updateCartCounter() {
+    document.querySelector(".cart-counter").textContent = cartItems.reduce((sum, item) => sum + item.qty, 0);
+  }
+
+  function updateCartDrawer() {
+    const drawer = document.getElementById("cartDrawer");
+    const summary = drawer.querySelector(".cart-summary");
+    summary.innerHTML = "";
+    let subtotal = 0;
+
+    cartItems.forEach((item, index) => {
+      subtotal += item.price * item.qty;
+
+      const itemDiv = document.createElement("div");
+      itemDiv.className = "cart-item";
+      itemDiv.innerHTML = `
+        <img src="${item.image}" width="50" height="50">
+        <div>
+          <p>${item.name}</p>
+          <div class="qty-control">
+            <button onclick="changeQty(${index}, -1)">-</button>
+            <input type="text" value="${item.qty}" readonly>
+            <button onclick="changeQty(${index}, 1)">+</button>
+          </div>
+        </div>
+        <span class="remove" onclick="removeItem(${index})">×</span>
+      `;
+      summary.appendChild(itemDiv);
+    });
+//  <a class="checkout-btn">Checkout</a>
+    summary.innerHTML += `
+      <p>Subtotal: ₹${subtotal.toFixed(2)}</p>
+      <p>Shipping: ₹5.00</p>
+      <h3>Total: ₹${(subtotal + 5).toFixed(2)}</h3>
+    
+
+
+       <div class="shop-container">
+  <button class="shop-button" id="check-out">
+    <span class="shop-text">
+      <a class="checkout-btn" href="checkout.html" onclick="saveCartToStorage()">Checkout</a>
+      </span>
+    <span class="shop-more"></span>
+  </button>
+</div>
+
+    `;
+  }
+
+  function addToCart(name, price, image) {
+    const existing = cartItems.find(item => item.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cartItems.push({ name, price, qty: 1, image });
+    }
+    updateCartCounter();
+    updateCartDrawer();
+  }
+
+  function changeQty(index, change) {
+    cartItems[index].qty += change;
+    if (cartItems[index].qty <= 0) {
+      cartItems.splice(index, 1);
+    }
+    updateCartCounter();
+    updateCartDrawer();
+  }
+
+  function removeItem(index) {
+    cartItems.splice(index, 1);
+    updateCartCounter();
+    updateCartDrawer();
+  }
+
+  function showTick(icon) {
+    const tick = icon.querySelector(".tick-overlay");
+    const content = icon.querySelector(".icon-content");
+    content.style.display = "none";
+    tick.style.display = "inline-block";
+
+    setTimeout(() => {
+      tick.style.display = "none";
+      content.style.display = "inline-block";
+    }, 1000);
+  }
+
+
+
+
+  
+function createProductCard(product) {
+  const card = document.createElement("div");
+  card.className = "img-1";
+  card.innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+    <div class="product-icons">
+      <span class="icon" onclick="showTick(this)">
+        <i class="fa-regular fa-heart icon-content"></i>
+        <span class="tick-overlay"><i class="fa-solid fa-check"></i></span>
+      </span>
+      <span class="icon" onclick="showTick(this)">
+        <i class="fa-regular fa-eye icon-content"></i>
+        <span class="tick-overlay"><i class="fa-solid fa-check"></i></span>
+      </span>
+      <span class="icon" onclick="showTick(this); addToCart('${product.name}', ${product.price}, '${product.image}')">
+        <i class="fa-solid fa-cart-shopping icon-content"></i>
+        <span class="tick-overlay"><i class="fa-solid fa-check"></i></span>
+      </span>
+    </div>
+    <div class="product-info">
+      <h4>${product.name}</h4>
+      <p class="price">₹${product.price}</p>
+        <div class="shop-container">
+  <button class="shop-button" id="Buy-now">
+    <span class="shop-text">Buy Now</span>
+    <span class="shop-more"></span>
+  </button>
+</div>
+    </div>
+  `;
+
+  card.querySelector(".shop-button").addEventListener("click", () => {
+    addToCart(product.name, product.price, product.image);
+  });
+
+  return card;
+}
+document.addEventListener("DOMContentLoaded", () => {
+  products.forEach(product => {
+    const card = createProductCard(product);
+    document.getElementById("productContainer").appendChild(card);
+  });
+});
+
+</script>
+
+<script>
+    function showTick(el) {
+      el.classList.add('show-tick');
+      setTimeout(() => {
+        el.classList.remove('show-tick');
+      }, 1500);
+    }
+    </script>
+    <script>
+  const cartDrawer = document.getElementById("cartDrawer");
+  const closeBtn = document.getElementById("menu-close");
+
+  closeBtn.addEventListener("click", () => {
+    cartDrawer.classList.remove("open");
+  });
+
+  function openCartDrawer() {
+    cartDrawer.classList.add("open");
+  }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.querySelector(".filter-toggle");
+  const filterSidebar = document.querySelector(".filter-sidebar");
+  const icon = toggleBtn.querySelector(".icon");
+  const container = document.querySelector(".productes");
+
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = filterSidebar.classList.toggle("active");
+    container.classList.toggle("with-filter", isOpen);
+    icon.textContent = isOpen ? "-" : "+";
+  });
+});
+</script>
+ <script>
+    const openCart = document.getElementById('openCart');
+    // const closeBtn = document.getElementById("menu-close");
+    const closeCart = document.getElementById('closeCart');
+    const cartDrawr = document.getElementById('cartDrawer');
+
+    openCart.addEventListener('click', function (e) {
+      e.preventDefault();
+      cartDrawr.classList.add('open');
+    });
+
+    closeCart.addEventListener('click', function () {
+      cartDrawr.classList.remove('open');
+    });
+    function saveCartToStorage() {
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+}
+
+  </script>
+<script>
+  // Already in your code probably
+function openProductDetails(product) {
+  localStorage.setItem('selectedProduct', JSON.stringify(product));
+  window.location.href = 'product-details.html';
+}
+</script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+    const dropdownToggles = document.querySelectorAll(".nav-item.dropdown > a");
+
+    // Toggle main menu
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+
+    // Toggle dropdowns
+    dropdownToggles.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const parent = link.closest(".nav-item.dropdown");
+        parent.classList.toggle("active");
+      });
+    });
+  });
+</script>
+</body>
+</html>
